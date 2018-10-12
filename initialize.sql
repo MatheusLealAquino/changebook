@@ -15,6 +15,13 @@ CREATE TABLE livro (
     sinopse VARCHAR(255) NOT NULL
 )engine = InnoDB;
 
+CREATE TABLE usuarioLivro (
+    idUsuario INT,
+    idLivro INT,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(id),
+    FOREIGN KEY (idLivro) REFERENCES livro(id),
+)engine = InnoDB;
+
 CREATE TABLE localizacao (
     id INT PRIMARY KEY,
     cidade VARCHAR(255) NOT NULL,

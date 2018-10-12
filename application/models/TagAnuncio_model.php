@@ -1,6 +1,6 @@
 <?php
     class TagAnuncio_model extends CI_Model {
-        private $tagAnuncio;
+        private $tableName = "tagAnuncio";
 
         public $idTag;
         public $idAnuncio;
