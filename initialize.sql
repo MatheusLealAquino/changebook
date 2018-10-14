@@ -4,7 +4,7 @@ CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     dataCriacao TIMESTAMP NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     fotoPerfil VARCHAR(255)
 )engine = InnoDB;
