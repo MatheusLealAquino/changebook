@@ -44,5 +44,8 @@ class Usuario extends CI_Controller {
         redirect('/Anuncio/');
     }
     
-    public function patchP
+    public function update(){
+        $this->load->model('Usuario_model');
+
+    }
 }
