@@ -9,7 +9,7 @@
             $this->db->insert($this->tableName, $this);
         }
 
-        public function read($idUsuario=null, $idLivro){
+        public function read($idUsuario=null, $idLivro=null){
             if($idUsuario != null && $idLivro != null) {
                 $this->db->where('idUsuario', $idUsuario);
                 $this->db->where('idLivro', $idLivro);                

@@ -1,7 +1,7 @@
 CREATE DATABASE changebook;
 
 CREATE TABLE usuario (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     dataCriacao TIMESTAMP NOT NULL,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE usuario (
 )engine = InnoDB;
 
 CREATE TABLE livro (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     sinopse VARCHAR(255) NOT NULL
 )engine = InnoDB;
@@ -19,17 +19,17 @@ CREATE TABLE usuarioLivro (
     idUsuario INT,
     idLivro INT,
     FOREIGN KEY (idUsuario) REFERENCES usuario(id),
-    FOREIGN KEY (idLivro) REFERENCES livro(id),
+    FOREIGN KEY (idLivro) REFERENCES livro(id)
 )engine = InnoDB;
 
 CREATE TABLE localizacao (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     cidade VARCHAR(255) NOT NULL,
     estado VARCHAR(255) NOT NULL
 )engine = InnoDB;
 
 CREATE TABLE anuncio (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     idLivro INT NOT NULL,
     dataCriacao TIMESTAMP NOT NULL,
     preco FLOAT NOT NULL,
@@ -40,14 +40,14 @@ CREATE TABLE anuncio (
 )engine = InnoDB;
 
 CREATE TABLE foto (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     idAnuncio INT NOT NULL,
     url VARCHAR(255) NOT NULL,
     FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)
 )engine = InnoDB;
 
 CREATE TABLE tag (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL
 )engine = InnoDB;
 
@@ -60,7 +60,7 @@ CREATE TABLE tagAnuncio (
 )engine = InnoDB;
 
 CREATE TABLE comentario (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     idAnuncio INT NOT NULL,
     comentario VARCHAR(255) NOT NULL,
     FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)

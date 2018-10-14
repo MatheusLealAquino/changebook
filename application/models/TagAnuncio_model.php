@@ -6,7 +6,7 @@
         public $idAnuncio;
 
         public function create(){
-            $this->db->insert($this->tableName, $this);
+            return $this->db->insert($this->tableName, $this);
         }
 
         public function read($idTag=null, $idAnuncio){
@@ -20,13 +20,13 @@
 
         public function update(){
             $this->db->where('id', $this->id);
-            $this->db->update($this->tableName, $this);
+            return $this->db->update($this->tableName, $this);
         }
 
         public function delete(){
             $this->db->where('idTag', $this->idTag);
             $this->db->where('idAnuncio', $this->idAnuncio);
-            $this->db->delete($this->tableName);
+            return $this->db->delete($this->tableName);
         }
     }
 ?>

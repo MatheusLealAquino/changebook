@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	 
 	public function index() {
 		$data = array(
 			'title' => 'Index'
@@ -27,4 +28,5 @@ class Home extends CI_Controller {
         $this->load->view('index');
 		$this->load->view('fixed/footer.php');
 	}
+
 }
