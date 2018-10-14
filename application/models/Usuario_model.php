@@ -28,5 +28,13 @@
             $this->db->where('id', $this->id);
             return $this->db->delete($this->tableName);
         }
+
+        public function login(){
+            $this->db->where('email', $this->email);
+            $this->db->where('senha', $this->senha);
+            $this->db->from($this->tableName);
+            $result = $this->db->count_all_results();
+            return $result == 1 ? true : false;
+        }
     }
 ?>
