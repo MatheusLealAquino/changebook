@@ -17,7 +17,7 @@ class Usuario extends CI_Controller {
         if($this->Usuario_model->create()){
             $data['cadastro_usuario'] = 'Usuário criado com sucesso.';
         }else{
-            $data['error'] = 'Usuário não foi criado.'
+            $data['error'] = 'Usuário não foi criado.';
             $this->load->view('fixed/header', $data);
             $this->load->view('cadastro');
 		    $this->load->view('fixed/footer.php');
