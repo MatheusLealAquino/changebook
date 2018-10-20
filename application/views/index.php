@@ -17,21 +17,23 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
-            <form action="#">
+            <form action="<?= base_url() ?>index.php/Home/login" method="POST">
+              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+
               <div class="form-group">
                 <label for="emailLogin">E-mail</label>
-                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" placeholder="harry@potter.com">
+                <input type="email" name="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" placeholder="harry@potter.com">
               </div>
               <div class="form-group">
                 <label for="passwordLogin">Senha</label>
-                <input type="password" class="form-control" id="passwordLogin" placeholder="******">
+                <input type="password" name="password" class="form-control" id="passwordLogin" placeholder="******">
               </div>
               <button type="submit" class="btn btn-primary btn-block">Entrar</button>
               <p class="text-center"><a href="#">Esqueci a senha</a></p>
             </form>
           </div>
           <div class="tab-pane fade pb-4" id="register" role="tabpanel" aria-labelledby="home-tab">
-            <form action="<?= base_url() ?>index.php/Usuario/cadastro" method="POST">
+            <form action="<?= base_url() ?>index.php/Home/cadastro" method="POST">
               <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
               
               <div class="form-group">
