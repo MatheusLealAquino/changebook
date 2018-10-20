@@ -4,24 +4,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuario extends CI_Controller {
 
 	public function cadastro() {
+        if($this->input->post('password') != $this->input->post('password2')){
+            $data['error'] = 'Senhas não conferem.';
+            $this->load->view('fixed/header', $data);
+            $this->load->view('index');
+		    $this->load->view('fixed/footer.php');
+        }
+
         $this->load->model('Usuario_model');
-        $urlPicture = date("Y-m-d H:i:s").'_'.$this->input->post('nome');
-        $upload_path = './uploads/profile';
 
         $this->Usuario_model->dataCriacao = date("Y-m-d");
-		$this->Usuario_model->nome = $this->input->post('nome');
+		$this->Usuario_model->nome = $this->input->post('name');
 		$this->Usuario_model->email = $this->input->post('email');
-		$this->Usuario_model->senha = md5($this->input->post('senha'));
-		$this->Usuario_model->fotoPerfil = $upload_path.$urlPicture;
+		$this->Usuario_model->senha = md5($this->input->post('password'));
 
         if($this->Usuario_model->create()){
             $data['cadastro_usuario'] = 'Usuário criado com sucesso.';
         }else{
             $data['error'] = 'Usuário não foi criado.';
             $this->load->view('fixed/header', $data);
-            $this->load->view('cadastro');
+            $this->load->view('index');
 		    $this->load->view('fixed/footer.php');
         }
+        
+        $userData = array(
+            'name'  => $this->Usuario_model->nome,
+            'email' => $this->Usuario_model->email,
+            'logged_in' => TRUE
+        );
+    
+        $this->session->set_userdata($userData);
+        
+        redirect('/Anuncio/');
+    }
+    
+    public function update(){
+        $this->load->model('Usuario_model');
+
+    }
+
+    public function uploadPhoto(){
+        $this->load->model('Usuario_model');
+
+        $urlPicture = date("Y-m-d H:i:s").'_'.$this->input->post('nome');
+        $upload_path = './uploads/profile';
+        $this->Usuario_model->fotoPerfil = $upload_path.$urlPicture;
         
         $config['file_name']            = $urlPicture;
         $config['upload_path']          = $upload_path;
@@ -40,12 +67,5 @@ class Usuario extends CI_Controller {
         }else{
             $data['upload_data'] = $this->upload->data();
         }
-
-        redirect('/Anuncio/');
-    }
-    
-    public function update(){
-        $this->load->model('Usuario_model');
-
     }
 }

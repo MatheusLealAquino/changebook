@@ -31,22 +31,24 @@
             </form>
           </div>
           <div class="tab-pane fade pb-4" id="register" role="tabpanel" aria-labelledby="home-tab">
-            <form action="#">
+            <form action="<?= base_url() ?>index.php/Usuario/cadastro" method="POST">
+              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+              
               <div class="form-group">
                 <label for="nameRegister">Nome</label>
-                <input type="text" class="form-control" id="nameRegister" aria-describedby="nameHelp" placeholder="Harry Potter">
+                <input type="text" name="name" class="form-control" id="nameRegister" aria-describedby="nameHelp" placeholder="Harry Potter">
               </div>
               <div class="form-group">
                 <label for="emailRegister">E-mail</label>
-                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="harry@potter.com">
+                <input type="email" name="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="harry@potter.com">
               </div>
               <div class="form-group">
                 <label for="passwordRegister">Senha</label>
-                <input type="password" class="form-control" id="passwordRegister" placeholder="******">
+                <input type="password" name="password" class="form-control" id="passwordRegister" placeholder="******">
               </div>
               <div class="form-group">
                 <label for="password2Register">Confirmar Senha</label>
-                <input type="password" class="form-control" id="password2Register" placeholder="******">
+                <input type="password" name="password2" class="form-control" id="password2Register" placeholder="******">
               </div>
               <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
             </form>
