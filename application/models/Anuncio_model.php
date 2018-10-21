@@ -15,7 +15,10 @@
 
         public function read($id=null){
             if($id != null) $this->db->where('id', $id);
-            $query = $this->db->get($this->tableName);
+            $query = $this->db->select('*')
+                  ->from('anuncio')
+                  ->join('livro', 'livro.id = anuncio.idLivro')
+                  ->get();
             return $query->result();
         }
 
@@ -27,6 +30,14 @@
         public function delete(){
             $this->db->where('id', $this->id);
             return $this->db->delete($this->tableName);
+        }
+
+        public function search($bookName){
+            $query = $this->db->select('*')
+                ->from('anuncio')
+                ->join('livro', 'livro.nome LIKE "%'.$bookName.'%"')
+                ->get();
+            return $query->result();
         }
     }
 ?>

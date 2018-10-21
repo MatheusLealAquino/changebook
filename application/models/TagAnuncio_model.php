@@ -9,9 +9,8 @@
             return $this->db->insert($this->tableName, $this);
         }
 
-        public function read($idTag=null, $idAnuncio){
-            if($idTag != null && $idAnuncio != null) {
-                $this->db->where('idTag', $idTag);
+        public function read($idAnuncio=null){
+            if($idAnuncio != null) {
                 $this->db->where('idAnuncio', $idAnuncio);                
             }
             $query = $this->db->get($this->tableName);

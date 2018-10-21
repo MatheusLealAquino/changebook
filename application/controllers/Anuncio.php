@@ -12,14 +12,25 @@ class Anuncio extends CI_Controller {
 	}
 
 	public function index() {	
-		$data = array(
-			'title' => 'Anuncios'
-        );
+		$data['title'] = 'Anuncios';
         
-        $this->load->model('Anuncio_model');
+		$this->load->model('Anuncio_model');
 
-        $data['anuncios'] = $this->Anuncio_model->read();
+		$data['anuncios'] = $this->Anuncio_model->read();
 
+		$this->load->view('fixed/header', $data);
+        $this->load->view('anuncio');
+		$this->load->view('fixed/footer.php');
+	}
+
+	public function search(){
+		$bookSearch = $this->input->get('s');
+		$data['title'] = 'Anuncios - '.$bookSearch;
+
+		$this->load->model('Anuncio_model');
+
+		$data['anuncios'] = $this->Anuncio_model->search($bookSearch);
+		
 		$this->load->view('fixed/header', $data);
         $this->load->view('anuncio');
 		$this->load->view('fixed/footer.php');

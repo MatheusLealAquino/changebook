@@ -3,3 +3,11 @@
   min-height: 100vh;
   padding-top: 50px;
 }
+
+.book-card {
+  background-color: #d8d8d8;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px; 
+  margin-bottom: 15px; 
+}
