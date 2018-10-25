@@ -3,9 +3,9 @@
         <div class="col-md-6 mb-3">
             <h2>Dados Pessoais:</h2>
 
-            <img src="<?= base_url() ?>assets/images/book.png" class="rounded mx-auto d-block">
+            <img src="<?= base_url() ?><?php echo $usuario['fotoPerfil'] ?>" class="rounded mx-auto d-block" width="180px" height="180px">
 
-            <form action="<?= base_url() ?>index.php/Usuario/perfil" method="POST">
+            <form action="<?= base_url() ?>index.php/Usuario/perfil/<?php echo $this->session->userdata('id') ?>" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 
                 <div class="form-group">
@@ -22,11 +22,11 @@
                 </div>
                 <div class="form-group">
                     <label for="nameRegister">Nome</label>
-                    <input type="text" name="name" class="form-control" id="nameRegister" aria-describedby="nameHelp" placeholder="Harry Potter">
+                    <input type="text" name="name" class="form-control" id="nameRegister" aria-describedby="nameHelp" value="<?php echo $usuario['nome'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="emailRegister">E-mail</label>
-                    <input type="email" name="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="harry@potter.com">
+                    <input type="email" name="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" value="<?php echo $usuario['email'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="passwordRegister">Senha</label>

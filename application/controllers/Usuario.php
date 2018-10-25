@@ -12,10 +12,51 @@ class Usuario extends CI_Controller {
 	}
     
     public function perfil($id){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $this->load->model('Usuario_model');
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id == $this->session->userdata('id')) {
+
+            $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
+
+            $pass1 = $this->input->post('password');
+            $pass2 = $this->input->post('password2');
+            
+            $this->Usuario_model->id = $id;
+            $this->Usuario_model->dataCriacao = $data['usuario']['dataCriacao']; 
+            $this->Usuario_model->nome = $this->input->post('name');
+            $this->Usuario_model->email = $this->input->post('email');    
+            
+            if( $pass1 != "" && $pass2 != "" && ($pass1 == $pass2)){
+		        $this->Usuario_model->senha = md5($this->input->post('password'));
+            }else{
+                $this->Usuario_model->senha = $data['usuario']['senha'];
+            }
+
+            if (isset($_FILES['fotoPerfil']) ){
+                $data['upload'] = $this->uploadPhoto();
+            }
+
+            $this->Usuario_model->update();
+            
+            $this->session->unset_userdata('nome');
+            $this->session->unset_userdata('email');
+
+            $updateSession = array(
+                'nome' => $this->Usuario_model->nome,
+                'email' => $this->Usuario_model->email
+            );
+
+            $this->session->set_userdata($updateSession);
+
+            $data['title'] = $this->session->userdata('nome');
+
+            $this->load->view('fixed/header', $data);
+            $this->load->view('perfil');
+            $this->load->view('fixed/footer.php');
 		}else{
             $data['title'] = $this->session->userdata('nome');
+
+            $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
 
             $this->load->view('fixed/header', $data);
             $this->load->view('perfil');
@@ -23,29 +64,29 @@ class Usuario extends CI_Controller {
 		}
     }
 
-    public function uploadPhoto(){
+    private function uploadPhoto(){
         $this->load->model('Usuario_model');
 
-        $urlPicture = date("Y-m-d H:i:s").'_'.$this->input->post('nome');
-        $upload_path = './uploads/profile';
-        $this->Usuario_model->fotoPerfil = $upload_path.$urlPicture;
+        $path = $_FILES['fotoPerfil']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+
+        $urlPicture = trim($this->Usuario_model->id);
+        $upload_path = './uploads/profile/';
+        $this->Usuario_model->fotoPerfil = 'uploads/profile/'.$urlPicture.'.'.$ext;
         
         $config['file_name']            = $urlPicture;
         $config['upload_path']          = $upload_path;
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+        $config['allowed_types']        = 'jpg|png';
+        $config['overwrite'] = TRUE;
 
         $this->load->library('upload', $config);
-        
+
         if (!$this->upload->do_upload('fotoPerfil')){
             $data['error'] = $this->upload->display_errors();
-            $this->load->view('fixed/header', $data);
-            $this->load->view('cadastro');
-		    $this->load->view('fixed/footer.php');
         }else{
-            $data['upload_data'] = $this->upload->data();
+            $data['data'] = $this->upload->data();
         }
+
+        return $data;
     }
 }
