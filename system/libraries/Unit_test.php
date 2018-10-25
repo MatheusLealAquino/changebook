@@ -194,7 +194,7 @@ class CI_Unit_test {
 	{
 		if (count($result) === 0)
 		{
-			$result = $this->result();
+			$result = $this->result_array();
 		}
 
 		$CI =& get_instance();

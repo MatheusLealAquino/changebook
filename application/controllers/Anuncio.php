@@ -35,4 +35,13 @@ class Anuncio extends CI_Controller {
         $this->load->view('anuncio');
 		$this->load->view('fixed/footer.php');
 	}
+
+	public function create(){
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+		}else{
+
+		}
+	}
+
 }

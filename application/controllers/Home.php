@@ -28,9 +28,7 @@ class Home extends CI_Controller {
 	}
 	 
 	public function index() {
-		$data = array(
-			'title' => 'Index'
-		);
+		$data['title'] = 'Index';
 
 		$this->load->view('fixed/header', $data);
         $this->load->view('index');
@@ -38,9 +36,7 @@ class Home extends CI_Controller {
 	}
 
 	public function cadastro() {
-		$data = array(
-			'title' => 'Index'
-		);
+		$data['title'] = 'Index';
 
 		if($this->input->post('password') != $this->input->post('password2')){
             $data['error'] = 'Senhas não conferem.';
@@ -64,8 +60,12 @@ class Home extends CI_Controller {
             $this->load->view('index');
 		    $this->load->view('fixed/footer.php');
         }
-        
+		
+		$result = $this->Usuario_model->loginUser($this->Usuario_model->email, $this->Usuario_model->senha);
+
         $userData = array(
+			'nome' => $result[0]['nome'],
+			'id' => $result[0]['id'],
             'email' => $this->Usuario_model->email,
             'logged_in' => TRUE
         );
@@ -76,17 +76,21 @@ class Home extends CI_Controller {
     }
 
 	public function login() {
-		$data = array(
-			'title' => 'Index'
-		);
-		
-		$this->load->model('Auth_model');
+		$this->load->model('Usuario_model');
+
+		$data['title'] = 'Index';
 
 		$email = $this->input->post('email');
 		$senha = md5($this->input->post('password'));
-		if( $this->Auth_model->login($email, $senha) ){
+
+		//Make query to get the user
+		$result = $this->Usuario_model->loginUser($email, $senha);
+
+		if( count($result) ){
 			$userData = array(
-				'email' => $this->Usuario_model->email,
+				'nome' => $result[0]['nome'],
+				'id' => $result[0]['id'],
+				'email' => $email,
 				'logged_in' => TRUE
 			);
 		

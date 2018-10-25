@@ -161,7 +161,7 @@ class CI_DB_oci8_result extends CI_DB_result {
 	 *
 	 * @return	void
 	 */
-	public function free_result()
+	public function free_result_array()
 	{
 		if (is_resource($this->result_id))
 		{

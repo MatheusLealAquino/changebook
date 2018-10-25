@@ -695,7 +695,7 @@ and <a class="reference external" href="https://tools.ietf.org/html/rfc6585">658
 <li>Fixed a regression (#4736) - <a class="reference internal" href="libraries/image_lib.html"><span class="doc">Image Manipulation Library</span></a> processing via ImageMagick didn’t work.</li>
 <li>Fixed a bug (#4737) - <a class="reference internal" href="database/query_builder.html"><span class="doc">Query Builder</span></a> didn’t add an <code class="docutils literal"><span class="pre">OFFSET</span></code> when <code class="docutils literal"><span class="pre">LIMIT</span></code> is zero or unused.</li>
 <li>Fixed a regression (#4739) - <a class="reference internal" href="libraries/email.html"><span class="doc">Email Library</span></a> doesn’t properly separate attachment bodies from headers.</li>
-<li>Fixed a bug (#4754) - <a class="reference internal" href="libraries/unit_testing.html"><span class="doc">Unit Testing Library</span></a> method <code class="docutils literal"><span class="pre">result()</span></code> didn’t translate <code class="docutils literal"><span class="pre">res_datatype</span></code>.</li>
+<li>Fixed a bug (#4754) - <a class="reference internal" href="libraries/unit_testing.html"><span class="doc">Unit Testing Library</span></a> method <code class="docutils literal"><span class="pre">result_array()</span></code> didn’t translate <code class="docutils literal"><span class="pre">res_datatype</span></code>.</li>
 <li>Fixed a bug (#4759) - <a class="reference internal" href="libraries/form_validation.html"><span class="doc">Form Validation</span></a>, <a class="reference internal" href="libraries/trackback.html"><span class="doc">Trackback</span></a> and <a class="reference internal" href="libraries/xmlrpc.html"><span class="doc">XML-RPC</span></a> libraries treated URI schemes in a case-sensitive manner.</li>
 <li>Fixed a bug (#4762) - <a class="reference internal" href="libraries/caching.html"><span class="doc">Cache Library</span></a> ‘file’ driver method <code class="docutils literal"><span class="pre">get_metadata()</span></code> checked TTL time against <code class="docutils literal"><span class="pre">mtime</span></code> instead of the cache item’s creation time.</li>
 <li>Fixed a bug where <a class="reference internal" href="libraries/file_uploading.html"><span class="doc">File Uploading Library</span></a> generated error messages on PHP 7.1.</li>
@@ -890,7 +890,7 @@ and <a class="reference external" href="https://tools.ietf.org/html/rfc6585">658
 </ul>
 </li>
 <li><a class="reference internal" href="database/index.html"><span class="doc">Database</span></a><ul>
-<li>Optimized <a class="reference internal" href="database/utilities.html"><span class="doc">Database Utility</span></a> method <code class="docutils literal"><span class="pre">csv_from_result()</span></code> for speed with larger result sets.</li>
+<li>Optimized <a class="reference internal" href="database/utilities.html"><span class="doc">Database Utility</span></a> method <code class="docutils literal"><span class="pre">csv_from_result_array()</span></code> for speed with larger result sets.</li>
 <li>Added proper return values to <a class="reference internal" href="database/transactions.html"><span class="doc">Database Transactions</span></a> method <code class="docutils literal"><span class="pre">trans_start()</span></code>.</li>
 </ul>
 </li>
@@ -997,7 +997,7 @@ and <a class="reference external" href="https://tools.ietf.org/html/rfc6585">658
 <li>Fixed a bug (#3823) - <a class="reference internal" href="libraries/sessions.html"><span class="doc">Session Library</span></a> drivers Redis and Memcached didn’t properly handle locks that are blocking the request for more than 30 seconds.</li>
 <li>Fixed a bug (#3846) - <a class="reference internal" href="libraries/image_lib.html"><span class="doc">Image Manipulation Library</span></a> method <cite>image_mirror_gd()</cite> didn’t properly initialize its variables.</li>
 <li>Fixed a bug (#3854) - <cite>field_data()</cite> didn’t work properly with the Oracle (OCI8) database driver.</li>
-<li>Fixed a bug in the <a class="reference internal" href="database/utilities.html"><span class="doc">Database Utility Class</span></a> method <code class="docutils literal"><span class="pre">csv_from_result()</span></code> didn’t work with a whitespace CSV delimiter.</li>
+<li>Fixed a bug in the <a class="reference internal" href="database/utilities.html"><span class="doc">Database Utility Class</span></a> method <code class="docutils literal"><span class="pre">csv_from_result_array()</span></code> didn’t work with a whitespace CSV delimiter.</li>
 <li>Fixed a bug (#3890) - <a class="reference internal" href="libraries/input.html"><span class="doc">Input Library</span></a> method <code class="docutils literal"><span class="pre">get_request_header()</span></code> treated header names as case-sensitive.</li>
 <li>Fixed a bug (#3903) - <a class="reference internal" href="libraries/form_validation.html"><span class="doc">Form Validation Library</span></a> ignored “unnamed” closure validation rules.</li>
 <li>Fixed a bug (#3904) - <a class="reference internal" href="libraries/form_validation.html"><span class="doc">Form Validation Library</span></a> ignored “named” callback rules when the field is empty and there’s no ‘required’ rule.</li>
@@ -1708,7 +1708,7 @@ Only entries in <code class="docutils literal"><span class="pre">$autoload['libr
 <li>Fixed a bug (#1000) - Change syntax of <code class="docutils literal"><span class="pre">$view_file</span></code> to <code class="docutils literal"><span class="pre">$_ci_view_file</span></code> to prevent being overwritten by application.</li>
 <li>Fixed a bug (#1757) - <a class="reference internal" href="helpers/directory_helper.html"><span class="doc">Directory Helper</span></a> function <a class="reference internal" href="helpers/directory_helper.html#directory_map" title="directory_map"><code class="xref php php-func docutils literal"><span class="pre">directory_map()</span></code></a> was skipping files and directories named ‘0’.</li>
 <li>Fixed a bug (#1789) - <a class="reference internal" href="database/index.html"><span class="doc">Database Library</span></a> method <code class="docutils literal"><span class="pre">escape_str()</span></code> escaped quote characters in LIKE conditions twice under MySQL.</li>
-<li>Fixed a bug (#395) - <a class="reference internal" href="libraries/unit_testing.html"><span class="doc">Unit Testing Library</span></a> method <code class="docutils literal"><span class="pre">result()</span></code> didn’t properly check array result columns when called from <code class="docutils literal"><span class="pre">report()</span></code>.</li>
+<li>Fixed a bug (#395) - <a class="reference internal" href="libraries/unit_testing.html"><span class="doc">Unit Testing Library</span></a> method <code class="docutils literal"><span class="pre">result_array()</span></code> didn’t properly check array result columns when called from <code class="docutils literal"><span class="pre">report()</span></code>.</li>
 <li>Fixed a bug (#1692) - <a class="reference internal" href="database/index.html"><span class="doc">Database Class</span></a> method <code class="docutils literal"><span class="pre">display_error()</span></code> didn’t properly trace the possible error source on Windows systems.</li>
 <li>Fixed a bug (#1745) - <a class="reference internal" href="database/index.html"><span class="doc">Database Class</span></a> method <code class="docutils literal"><span class="pre">is_write_type()</span></code> didn’t return TRUE for LOAD queries.</li>
 <li>Fixed a bug (#1765) - <a class="reference internal" href="database/index.html"><span class="doc">Database Class</span></a> didn’t properly detect connection errors for the ‘mysqli’ driver.</li>
@@ -2645,7 +2645,7 @@ for “May”.</li>
 <li>Fixed a bug with ORIG_PATH_INFO that was allowing URIs of just a
 slash through.</li>
 <li>Fixed a fatal error in the Oracle and ODBC drivers (#6752)</li>
-<li>Fixed a bug where xml_from_result() was checking for a nonexistent
+<li>Fixed a bug where xml_from_result_array() was checking for a nonexistent
 method.</li>
 <li>Fixed a bug where Database Forge’s add_column and modify_column
 were not looping through when sent multiple fields.</li>
@@ -2740,7 +2740,7 @@ determine the visitor’s IP address.</li>
 <li>Fixed a bug when using DB cache on multiple databases (#5737).</li>
 <li>Fixed a bug where TRUNCATE was not considered a “write” query
 (#6619).</li>
-<li>Fixed a bug where csv_from_result() was checking for a
+<li>Fixed a bug where csv_from_result_array() was checking for a
 nonexistent method.</li>
 <li>Fixed a bug _protect_identifiers() where it was improperly
 removing all pipe symbols from items</li>
@@ -3329,7 +3329,7 @@ names with the current prefix.</li>
 groupby() for group_by(); havingor() for having_or(); orderby()
 for order_by; orwhere() for or_where(); and orlike() for
 or_like().</li>
-<li>Modified csv_from_result() to output CSV data more in the spirit
+<li>Modified csv_from_result_array() to output CSV data more in the spirit
 of basic rules of RFC 4180.</li>
 <li>Added ‘char_set’ and ‘dbcollat’ database configuration settings,
 to explicitly set the client communication properly.</li>
@@ -3434,7 +3434,7 @@ include the ‘index’ method if routed to the controller without an
 implicit method.</li>
 <li>Fixed a bug (#1872) where word_limiter() was not retaining
 whitespace.</li>
-<li>Fixed a bug (#1890) in csv_from_result() where content that
+<li>Fixed a bug (#1890) in csv_from_result_array() where content that
 included the delimiter would break the file.</li>
 <li>Fixed a bug (#2542)in the clean_email() method of the Email class to
 allow for non-numeric / non-sequential array keys.</li>
@@ -3723,7 +3723,7 @@ sub-folders</span></a>.</li>
 database classes</li>
 <li>Added <a class="reference internal" href="helpers/date_helper.html"><span class="doc">standard_date()</span></a> function to
 the Date Helper.</li>
-<li>Added <a class="reference internal" href="database/results.html"><span class="doc">$query-&gt;free_result()</span></a> to database
+<li>Added <a class="reference internal" href="database/results.html"><span class="doc">$query-&gt;free_result_array()</span></a> to database
 class.</li>
 <li>Added <a class="reference internal" href="database/metadata.html"><span class="doc">$query-&gt;list_fields()</span></a> function to
 database class</li>
@@ -3750,7 +3750,7 @@ $config[‘uri_protocol’] item is set to AUTO.</li>
 class, allowing fewer reserved function names for controllers when
 running under PHP 5.</li>
 <li>Updated the DB Result class to return an empty array when
-$query-&gt;result() doesn’t produce a result.</li>
+$query-&gt;result_array() doesn’t produce a result.</li>
 <li>Updated the input-&gt;cookie() and input-&gt;post() functions in <a class="reference internal" href="libraries/input.html"><span class="doc">Input
 Class</span></a> to permit arrays contained cookies
 that are arrays to be run through the XSS filter.</li>

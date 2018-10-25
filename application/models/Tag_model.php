@@ -12,7 +12,7 @@
         public function read($id=null){
             if($id != null) $this->db->where('id', $id);
             $query = $this->db->get($this->tableName);
-            return $query->result();
+            return $query->result_array();
         }
 
         public function update(){

@@ -3,8 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Controller {
     
-    public function index($id){
+    public function perfil($id){
+        $data['title'] = $this->session->userdata('nome');
 
+        $this->load->view('fixed/header', $data);
+        $this->load->view('cadastro');
+        $this->load->view('fixed/footer.php');
     }
 
     public function update(){

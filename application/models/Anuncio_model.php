@@ -19,7 +19,7 @@
                   ->from('anuncio')
                   ->join('livro', 'livro.id = anuncio.idLivro')
                   ->get();
-            return $query->result();
+            return $query->result_array();
         }
 
         public function update(){
@@ -37,7 +37,7 @@
                 ->from('anuncio')
                 ->join('livro', 'livro.nome LIKE "%'.$bookName.'%"')
                 ->get();
-            return $query->result();
+            return $query->result_array();
         }
     }
 ?>

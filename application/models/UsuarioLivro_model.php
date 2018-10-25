@@ -15,7 +15,7 @@
                 $this->db->where('idLivro', $idLivro);                
             }
             $query = $this->db->get($this->tableName);
-            return $query->result();
+            return $query->result_array();
         }
 
         public function update(){

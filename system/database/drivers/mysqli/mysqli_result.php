@@ -174,7 +174,7 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	 *
 	 * @return	void
 	 */
-	public function free_result()
+	public function free_result_array()
 	{
 		if (is_object($this->result_id))
 		{

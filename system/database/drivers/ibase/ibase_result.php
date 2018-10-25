@@ -111,7 +111,7 @@ class CI_DB_ibase_result extends CI_DB_result {
 	 *
 	 * @return	void
 	 */
-	public function free_result()
+	public function free_result_array()
 	{
 		ibase_free_result($this->result_id);
 	}
