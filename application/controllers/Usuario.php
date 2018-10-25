@@ -15,7 +15,6 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id == $this->session->userdata('id')) {
-
             $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
 
             $pass1 = $this->input->post('password');
@@ -29,11 +28,13 @@ class Usuario extends CI_Controller {
             if( $pass1 != "" && $pass2 != "" && ($pass1 == $pass2)){
 		        $this->Usuario_model->senha = md5($this->input->post('password'));
             }else{
-                $this->Usuario_model->senha = $data['usuario']['senha'];
+                $this->Usuario_model->fotoPerfil = $data['usuario']['fotoPerfil'];
             }
 
-            if (isset($_FILES['fotoPerfil']) ){
+            if (isset($_FILES['fotoPerfil']) && !empty($_FILES['fotoPerfil'])){
                 $data['upload'] = $this->uploadPhoto();
+            }else{
+                $this->Usuario_model->senha = $data['usuario']['senha'];
             }
 
             $this->Usuario_model->update();
@@ -72,8 +73,7 @@ class Usuario extends CI_Controller {
 
         $urlPicture = trim($this->Usuario_model->id);
         $upload_path = './uploads/profile/';
-        $this->Usuario_model->fotoPerfil = 'uploads/profile/'.$urlPicture.'.'.$ext;
-        
+
         $config['file_name']            = $urlPicture;
         $config['upload_path']          = $upload_path;
         $config['allowed_types']        = 'jpg|png';
@@ -84,6 +84,7 @@ class Usuario extends CI_Controller {
         if (!$this->upload->do_upload('fotoPerfil')){
             $data['error'] = $this->upload->display_errors();
         }else{
+            $this->Usuario_model->fotoPerfil = 'uploads/profile/'.$urlPicture.'.'.$ext;        
             $data['data'] = $this->upload->data();
         }
 
