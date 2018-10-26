@@ -28,7 +28,7 @@
                         <a class="nav-link" href="'.base_url().'index.php/Home/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="'.base_url().'index.php/Anuncio/Create">Criar Anuncio</span></a>
+                        <a class="nav-link" href="'.base_url().'index.php/Anuncio/Create">Cadastrar Anúncio</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -43,3 +43,19 @@
             </nav>';
         }
     ?>
+
+    <div class="container">
+        <?php 
+            if(!empty($erro)){
+                echo '<div class="alert alert-danger mt-3" role="alert">
+                    '.$erro.'
+                </div>';
+            }
+
+            if(!empty($success)){
+                echo '<div class="alert alert-success mt-3" role="alert">
+                    '.$success.'
+                </div>';
+            }
+        ?>
+    </div>

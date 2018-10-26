@@ -15,13 +15,6 @@ CREATE TABLE livro (
     sinopse VARCHAR(255) NOT NULL
 )engine = InnoDB;
 
-CREATE TABLE usuarioLivro (
-    idUsuario INT,
-    idLivro INT,
-    FOREIGN KEY (idUsuario) REFERENCES usuario(id),
-    FOREIGN KEY (idLivro) REFERENCES livro(id)
-)engine = InnoDB;
-
 CREATE TABLE localizacao (
     id INT PRIMARY KEY AUTO_INCREMENT,
     cidade VARCHAR(255) NOT NULL,
@@ -30,12 +23,14 @@ CREATE TABLE localizacao (
 
 CREATE TABLE anuncio (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT NOT NULL,
     idLivro INT NOT NULL,
+    urlCapa VARCHAR(255) NOT NULL,
     dataCriacao TIMESTAMP NOT NULL,
     preco FLOAT NOT NULL,
-    status BOOLEAN NOT NULL,
     idLocalizacao INT NOT NULL,
     FOREIGN KEY (idLivro) REFERENCES livro(id),
+    FOREIGN KEY (idUsuario) REFERENCES usuario(id),
     FOREIGN KEY (idLocalizacao) REFERENCES localizacao(id)
 )engine = InnoDB;
 
@@ -79,3 +74,43 @@ CREATE TABLE emprestimo (
     FOREIGN KEY (idAnuncio) REFERENCES anuncio(id),
     FOREIGN KEY (idAnuncioTroca) REFERENCES anuncio(id)
 )engine = InnoDB;
+
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Niterói', 'Rio de Janeiro');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('São Gonçalo', 'Rio de Janeiro');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Rio de Janeiro', 'Rio de Janeiro');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Itaborai', 'Rio de Janeiro');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Fortaleza', 'Ceará');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Natal', 'Rio Grande do Norte');
+
+INSERT INTO localizacao (cidade, estado)
+VALUES ('Salvador', 'Bahia');
+
+INSERT INTO tag(nome)
+VALUES ('Ação');
+
+INSERT INTO tag(nome)
+VALUES ('Comédia');
+
+INSERT INTO tag(nome)
+VALUES ('Ficção');
+
+INSERT INTO tag(nome)
+VALUES ('Terror');
+
+INSERT INTO tag(nome)
+VALUES ('Administração');
+
+INSERT INTO tag(nome)
+VALUES ('História');

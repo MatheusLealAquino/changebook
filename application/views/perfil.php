@@ -42,10 +42,11 @@
         <div class="col-md-6">
             <h2>Anúncios Criados:</h2>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <?php 
+                    foreach ($anuncios as $anuncio){
+                        echo "<a href='".$anuncio['id']."' class='list-group-item list-group-item-action'>".$anuncio['livro']['nome']."</a>";
+                    }
+                ?>
             </div>
             <button type="button" class="btn btn-info mt-2 float-right">Ver todos anúncios</button>
         </div>

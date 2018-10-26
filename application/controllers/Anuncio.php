@@ -19,7 +19,7 @@ class Anuncio extends CI_Controller {
 		$data['anuncios'] = $this->Anuncio_model->read();
 
 		$this->load->view('fixed/header', $data);
-        $this->load->view('anuncio');
+        $this->load->view('anuncios');
 		$this->load->view('fixed/footer.php');
 	}
 
@@ -32,16 +32,89 @@ class Anuncio extends CI_Controller {
 		$data['anuncios'] = $this->Anuncio_model->search($bookSearch);
 		
 		$this->load->view('fixed/header', $data);
-        $this->load->view('anuncio');
+        $this->load->view('anuncios');
 		$this->load->view('fixed/footer.php');
 	}
 
 	public function create(){
+		$data['title'] = "Cadastrar Anúncio";
+		
+		$this->load->model('Livro_model');
+		$this->load->model('Localizacao_model');
+
+		$data['livros'] = $this->Livro_model->read();
+		$data['localizacoes'] = $this->Localizacao_model->read();
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$this->load->model('Anuncio_model');
+
+			$this->Anuncio_model->idLivro = $this->input->post('livro');
+			$this->Anuncio_model->idUsuario = $this->session->userdata('id'); 
+			$this->Anuncio_model->dataCriacao = date("Y-m-d"); 
+			$this->Anuncio_model->preco = $this->input->post('preco'); 
+			$this->Anuncio_model->idLocalizacao = $this->input->post('localizacao');
+			
+			$id = $this->Anuncio_model->create();
+
+			if($id){
+				$this->Anuncio_model->id = $id;
+				
+				if (isset($_FILES['fotoPerfil']) && !empty($_FILES['fotoAnuncio']['name'])){
+					$data['upload'] = $this->uploadPhoto();
+				}else{
+					$this->Anuncio_model->urlCapa = "";
+				}
+			}else{
+				$data['error'] = "Anúncio não foi criado"; 
+			}
+
+			$data['success'] = "Anúncio criado com sucesso!";
+
+			$this->load->view('fixed/header', $data);
+			$this->load->view('cadastro_anuncio');
+			$this->load->view('fixed/footer.php');
+		}else{
+			$this->load->view('fixed/header', $data);
+        	$this->load->view('cadastro_anuncio');
+			$this->load->view('fixed/footer.php');
+		}
+	}
+
+	public function read($id){
+		
+	}
+
+	public function edit($id){
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		}else{
 
 		}
 	}
+
+	private function uploadPhoto(){
+        $this->load->model('Anuncio_model');
+
+        $path = $_FILES['fotoAnuncio']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+
+        $urlPicture = trim($this->Anuncio_model->id);
+        $upload_path = './uploads/advertisement/';
+
+        $config['file_name']            = $urlPicture;
+        $config['upload_path']          = $upload_path;
+        $config['allowed_types']        = 'jpg|png';
+        $config['overwrite']            = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('fotoAnuncio')){
+            $data['error'] = $this->upload->display_errors();
+        }else{
+            $this->Usuario_model->fotoPerfil = 'uploads/advertisement/'.$urlPicture.'.'.$ext;        
+            $data['data'] = $this->upload->data();
+        }
+        return $data;
+    }
 
 }

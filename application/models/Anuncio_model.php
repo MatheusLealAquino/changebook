@@ -4,19 +4,21 @@
 
         public $id;
         public $idLivro;
+        public $idUsuario;
         public $dataCriacao;
         public $preco;
-        public $status;
         public $idLocalizacao;
         
         public function create(){
-            return $this->db->insert($this->tableName, $this);
+            $this->db->insert($this->tableName, $this);
+            return $this->db->insert_id();
         }
 
         public function read($id=null){
-            if($id != null) $this->db->where('id', $id);
+            if($id != null) $this->db->where('idUsuario', $id);
             $query = $this->db->select('*')
                   ->from('anuncio')
+                  ->join('usuario', 'usuario.id = anuncio.idUsuario')
                   ->join('livro', 'livro.id = anuncio.idLivro')
                   ->get();
             return $query->result_array();
