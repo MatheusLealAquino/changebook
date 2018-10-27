@@ -34,13 +34,6 @@ CREATE TABLE anuncio (
     FOREIGN KEY (idLocalizacao) REFERENCES localizacao(id)
 )engine = InnoDB;
 
-CREATE TABLE foto (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    idAnuncio INT NOT NULL,
-    url VARCHAR(255) NOT NULL,
-    FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)
-)engine = InnoDB;
-
 CREATE TABLE tag (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL
@@ -51,13 +44,6 @@ CREATE TABLE tagAnuncio (
     idAnuncio INT NOT NULL,
     PRIMARY KEY(idTag, idAnuncio),
     FOREIGN KEY (idTag) REFERENCES tag(id),
-    FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)
-)engine = InnoDB;
-
-CREATE TABLE comentario (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    idAnuncio INT NOT NULL,
-    comentario VARCHAR(255) NOT NULL,
     FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)
 )engine = InnoDB;
 
