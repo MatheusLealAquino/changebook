@@ -2,7 +2,8 @@
     <div class="row mb-5">
         <div class="col-md-5 mx-auto mt-3">
             <form class="mx-auto" method="GET" action="<?= base_url() ?>index.php/Anuncio/search">
-                <input class="form-control mr-sm-2" name="s" type="search" placeholder="Buscar livros..." aria-label="Search">
+                <input class="form-control mr-sm-2" name="s" type="search" placeholder="Buscar livros..." aria-label="Search"
+                value="<?php echo isset($_GET['s']) ? $_GET['s'] : "" ?>">
             </form>
         </div>
     </div>

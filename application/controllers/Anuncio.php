@@ -30,8 +30,6 @@ class Anuncio extends CI_Controller {
 		$this->load->model('Anuncio_model');
 
 		$data['anuncios'] = $this->Anuncio_model->search($bookSearch);
-
-		var_dump($data);
 		
 		$this->load->view('fixed/header', $data);
         $this->load->view('anuncios');

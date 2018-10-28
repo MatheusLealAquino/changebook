@@ -38,7 +38,8 @@
         public function search($bookName){
             $query = $this->db->select('*')
                 ->from('anuncio')
-                ->join('livro', 'livro.nome LIKE "%'.$bookName.'%"')
+                ->join('livro', 'anuncio.idLivro = livro.id')
+                ->like('nome', $bookName)
                 ->get();
             return $query->result_array();
         }
