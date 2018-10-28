@@ -30,6 +30,8 @@ class Anuncio extends CI_Controller {
 		$this->load->model('Anuncio_model');
 
 		$data['anuncios'] = $this->Anuncio_model->search($bookSearch);
+
+		var_dump($data);
 		
 		$this->load->view('fixed/header', $data);
         $this->load->view('anuncios');
@@ -52,23 +54,25 @@ class Anuncio extends CI_Controller {
 			$this->Anuncio_model->idUsuario = $this->session->userdata('id'); 
 			$this->Anuncio_model->dataCriacao = date("Y-m-d"); 
 			$this->Anuncio_model->preco = $this->input->post('preco'); 
+			$this->Anuncio_model->titulo = $this->input->post('titulo'); 
 			$this->Anuncio_model->idLocalizacao = $this->input->post('localizacao');
 			
 			$id = $this->Anuncio_model->create();
 
 			if($id){
-				$this->Anuncio_model->id = $id;
-				
-				if (isset($_FILES['fotoPerfil']) && !empty($_FILES['fotoAnuncio']['name'])){
+				$this->Anuncio_model->idAnuncio = $id;
+
+				if (isset($_FILES['fotoAnuncio']) && !empty($_FILES['fotoAnuncio']['name'])){
 					$data['upload'] = $this->uploadPhoto();
 				}else{
 					$this->Anuncio_model->urlCapa = "";
 				}
+
+				$this->Anuncio_model->update();
+				$data['success'] = "Anúncio criado com sucesso!";
 			}else{
 				$data['error'] = "Anúncio não foi criado"; 
 			}
-
-			$data['success'] = "Anúncio criado com sucesso!";
 
 			$this->load->view('fixed/header', $data);
 			$this->load->view('cadastro_anuncio');
@@ -98,7 +102,7 @@ class Anuncio extends CI_Controller {
         $path = $_FILES['fotoAnuncio']['name'];
         $ext = pathinfo($path, PATHINFO_EXTENSION);
 
-        $urlPicture = trim($this->Anuncio_model->id);
+        $urlPicture = trim($this->Anuncio_model->idAnuncio);
         $upload_path = './uploads/advertisement/';
 
         $config['file_name']            = $urlPicture;
@@ -109,9 +113,10 @@ class Anuncio extends CI_Controller {
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('fotoAnuncio')){
-            $data['error'] = $this->upload->display_errors();
+			$data['error'] = $this->upload->display_errors();
+			var_dump($data['error']);
         }else{
-            $this->Usuario_model->fotoPerfil = 'uploads/advertisement/'.$urlPicture.'.'.$ext;        
+            $this->Anuncio_model->urlCapa = 'uploads/advertisement/'.$urlPicture.'.'.$ext;        
             $data['data'] = $this->upload->data();
         }
         return $data;

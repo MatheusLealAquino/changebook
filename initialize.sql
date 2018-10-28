@@ -22,10 +22,11 @@ CREATE TABLE localizacao (
 )engine = InnoDB;
 
 CREATE TABLE anuncio (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    idAnuncio INT PRIMARY KEY AUTO_INCREMENT,
     idUsuario INT NOT NULL,
     idLivro INT NOT NULL,
-    urlCapa VARCHAR(255) NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    urlCapa VARCHAR(255),
     dataCriacao TIMESTAMP NOT NULL,
     preco FLOAT NOT NULL,
     idLocalizacao INT NOT NULL,

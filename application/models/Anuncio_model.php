@@ -2,9 +2,10 @@
     class Anuncio_model extends CI_Model {
         private $tableName = "anuncio";
 
-        public $id;
+        public $idAnuncio;
         public $idLivro;
         public $idUsuario;
+        public $urlCapa;
         public $dataCriacao;
         public $preco;
         public $idLocalizacao;
@@ -25,12 +26,12 @@
         }
 
         public function update(){
-            $this->db->where('id', $this->id);
+            $this->db->where('idAnuncio', $this->idAnuncio);
             return $this->db->update($this->tableName, $this);
         }
 
         public function delete(){
-            $this->db->where('id', $this->id);
+            $this->db->where('idAnuncio', $this->idAnuncio);
             return $this->db->delete($this->tableName);
         }
 
