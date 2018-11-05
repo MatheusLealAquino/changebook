@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nameRegister">Nome</label>
-                    <input type="text" name="name" class="form-control" id="nameRegister" aria-describedby="nameHelp" value="<?php echo $usuario['nome'] ?>">
+                    <input type="text" name="name" class="form-control" id="nameRegister" aria-describedby="nameHelp" value="<?php echo $usuario['nomeUsuario'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="emailRegister">E-mail</label>
