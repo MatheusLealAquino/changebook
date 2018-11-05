@@ -9,7 +9,7 @@
         <div class="col-md-6 detalhe-anuncio">
             <h2><?php echo $anuncio[0]['titulo']?></h2>
             <ul class="list-group mb-2">
-                <li class="list-group-item">Preço: <?php echo $anuncio[0]['preco']; ?></li>
+                <li class="list-group-item">Preço: <?php echo str_replace(".",",",$anuncio[0]['preco']); ?></li>
                 <li class="list-group-item">Localização: <?php echo $anuncio[0]['cidade']." - ".$anuncio[0]['estado']?></li>
                 <li class="list-group-item">Criado por: <?php echo $anuncio[0]['nomeUsuario']; ?></li>
                 <li class="list-group-item">Data da Criação do Anúncio: <?php $date = date_create($anuncio[0]['dataCriacao']); echo date_format($date,'d/m/Y'); ?></li>
