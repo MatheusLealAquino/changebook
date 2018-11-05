@@ -15,7 +15,7 @@
                     $foto = !empty($anuncio['urlCapa']) ? $anuncio['urlCapa'] : 'assets/images/book.png';
                     echo '<div class="col-md-2 text-center book-card">
                             <img src="'.base_url().$foto.'" width="100" height="110"><br>
-                            <a href="'.base_url().'Anuncio/'.$anuncio['idAnuncio'].'">'.$anuncio['titulo'].'</a>
+                            <a href="'.base_url().'index.php/Anuncio/read/'.$anuncio['idAnuncio'].'">'.$anuncio['titulo'].'</a>
                         </div>';
                 }
             ?>

@@ -83,7 +83,14 @@ class Anuncio extends CI_Controller {
 	}
 
 	public function read($id){
-		
+		$data['title'] = 'Anuncios';
+
+		$this->load->model('Anuncio_model');
+		$data['anuncio'] = $this->Anuncio_model->read($id);
+
+		$this->load->view('fixed/header', $data);
+		$this->load->view('anuncio');
+		$this->load->view('fixed/footer.php');
 	}
 
 	public function edit($id){
@@ -119,5 +126,4 @@ class Anuncio extends CI_Controller {
         }
         return $data;
     }
-
 }

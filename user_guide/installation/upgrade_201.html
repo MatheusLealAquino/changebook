@@ -455,7 +455,7 @@ need to be changed from:</p>
 </pre></div>
 </div>
 <p>to use either a / or base_url():</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span> <span class="c1">//&lt;form action=&quot;http://example.com/index.php/&quot; method=&quot;post&quot; accept-charset=&quot;utf-8&quot;&gt;</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span> <span class="c1">//&lt;form action=&quot;http://example.com//&quot; method=&quot;post&quot; accept-charset=&quot;utf-8&quot;&gt;</span>
 <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="nx">base_url</span><span class="p">());</span> <span class="c1">//&lt;form action=&quot;http://example.com/&quot; method=&quot;post&quot; accept-charset=&quot;utf-8&quot;&gt;</span>
 </pre></div>
 </div>

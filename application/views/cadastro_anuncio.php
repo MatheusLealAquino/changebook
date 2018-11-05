@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid body-wrapper cadastro-anuncio">
     <div class="row">
-        <div class="col-md-10 mx-auto mb-3 mt-3">
+        <div class="col-md-10 mx-auto mb-3">
             <form action="<?= base_url() ?>index.php/Anuncio/create" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                 <div class="form-group">

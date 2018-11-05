@@ -21,6 +21,18 @@ class Livro extends CI_Controller {
 		$this->load->view('fixed/header', $data);
         $this->load->view('livro');
 		$this->load->view('fixed/footer.php');
+	}
+	
+	public function create(){
+        $data['title'] = 'Livros';
+        
+		$this->load->model('Livro_model');
+
+		$data['livros'] = $this->Livro_model->read();
+
+		$this->load->view('fixed/header', $data);
+        $this->load->view('livro');
+		$this->load->view('fixed/footer.php');
     }
 }
 

@@ -534,8 +534,8 @@ view.</p>
 <div class="section" id="routing">
 <h2>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h2>
 <p>The controller is now functioning! Point your browser to
-<code class="docutils literal"><span class="pre">[your-site-url]index.php/pages/view</span></code> to see your page. When you visit
-<code class="docutils literal"><span class="pre">index.php/pages/view/about</span></code> you’ll see the about page, again including
+<code class="docutils literal"><span class="pre">[your-site-url]/pages/view</span></code> to see your page. When you visit
+<code class="docutils literal"><span class="pre">/pages/view/about</span></code> you’ll see the about page, again including
 the header and footer.</p>
 <p>Using custom routing rules, you have the power to map any URI to any
 controller and method, and break free from the normal convention:
@@ -558,7 +558,7 @@ arguments.</p>
 <p>Here, the second rule in the <code class="docutils literal"><span class="pre">$routes</span></code> array matches <strong>any</strong> request
 using the wildcard string <code class="docutils literal"><span class="pre">(:any)</span></code>. and passes the parameter to the
 <code class="docutils literal"><span class="pre">view()</span></code> method of the <code class="docutils literal"><span class="pre">Pages</span></code> class.</p>
-<p>Now visit <code class="docutils literal"><span class="pre">index.php/about</span></code>. Did it get routed correctly to the <code class="docutils literal"><span class="pre">view()</span></code>
+<p>Now visit <code class="docutils literal"><span class="pre">/about</span></code>. Did it get routed correctly to the <code class="docutils literal"><span class="pre">view()</span></code>
 method in the pages controller? Awesome!</p>
 </div>
 </div>

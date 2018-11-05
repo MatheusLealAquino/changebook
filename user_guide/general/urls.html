@@ -468,7 +468,7 @@ except the specified items:</p>
 <div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nb">RewriteEngine</span> <span class="k">On</span>
 <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
 <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-d
-<span class="nb">RewriteRule</span> ^(.*)$ index.php/$1 [L]
+<span class="nb">RewriteRule</span> ^(.*)$ /$1 [L]
 </pre></div>
 </div>
 <p>In the above example, any HTTP request other than those for existing

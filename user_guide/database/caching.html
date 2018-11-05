@@ -554,7 +554,7 @@ keep certain queries from being cached. Example:</p>
 useful if you need to clear caching after you update your database.</p>
 <p>The caching system saves your cache files to folders that correspond to
 the URI of the page you are viewing. For example, if you are viewing a
-page at example.com/index.php/blog/comments, the caching system will put
+page at example.com//blog/comments, the caching system will put
 all cache files associated with it in a folder called blog+comments. To
 delete those particular cache files you will use:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">cache_delete</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">);</span>

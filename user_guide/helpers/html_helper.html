@@ -515,7 +515,7 @@ image source. Example:</p>
 specifics if the <em>src</em> should have the page specified by
 <code class="docutils literal"><span class="pre">$config['index_page']</span></code> added to the address it creates.
 Presumably, this would be if you were using a media controller:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">img</span><span class="p">(</span><span class="s1">&#39;images/picture.jpg&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="c1">// gives &lt;img src=&quot;http://site.com/index.php/images/picture.jpg&quot; alt=&quot;&quot; /&gt;</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">img</span><span class="p">(</span><span class="s1">&#39;images/picture.jpg&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="c1">// gives &lt;img src=&quot;http://site.com//images/picture.jpg&quot; alt=&quot;&quot; /&gt;</span>
 </pre></div>
 </div>
 <p>Additionally, an associative array can be passed to the <code class="docutils literal"><span class="pre">img()</span></code> function
@@ -533,7 +533,7 @@ is not provided, CodeIgniter will generate an empty string.</p>
 <span class="p">);</span>
 
 <span class="nx">img</span><span class="p">(</span><span class="nv">$image_properties</span><span class="p">);</span>
-<span class="c1">// &lt;img src=&quot;http://site.com/index.php/images/picture.jpg&quot; alt=&quot;Me, demonstrating how to eat 4 slices of pizza at one time&quot; class=&quot;post_images&quot; width=&quot;200&quot; height=&quot;200&quot; title=&quot;That was quite a night&quot; rel=&quot;lightbox&quot; /&gt;</span>
+<span class="c1">// &lt;img src=&quot;http://site.com//images/picture.jpg&quot; alt=&quot;Me, demonstrating how to eat 4 slices of pizza at one time&quot; class=&quot;post_images&quot; width=&quot;200&quot; height=&quot;200&quot; title=&quot;That was quite a night&quot; rel=&quot;lightbox&quot; /&gt;</span>
 </pre></div>
 </div>
 </dd></dl>

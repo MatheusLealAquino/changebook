@@ -4,7 +4,7 @@
         
         public $id;
         public $dataCriacao;
-        public $nome;
+        public $nomeUsuario;
         public $email;
         public $senha;
         public $fotoPerfil;
