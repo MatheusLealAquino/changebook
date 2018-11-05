@@ -16,9 +16,9 @@
                 <li class="list-group-item">
                     <?php 
                         if($this->session->userdata('email') == $anuncio[0]['email']){
-                            echo '<a href="#"><button type="button" class="btn btn-primary btn-block">Editar</button></a>';
+                            echo '<a href="'.base_url().'index.php/Anuncio/edit/'.$anuncio[0]['idAnuncio'].'"><button type="button" class="btn btn-primary btn-block">Editar</button></a>';
                         }else{
-                            echo '<a href="#"><button type="button" class="btn btn-primary btn-block">Alugar</button></a>';
+                            echo '<a href="'.base_url().'index.php/Emprestimo/create/'.$anuncio[0]['idAnuncio'].'"><button type="button" class="btn btn-primary btn-block">Alugar</button></a>';
                         }
                     ?>
                 </li>
