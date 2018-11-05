@@ -13,7 +13,15 @@
                 <li class="list-group-item">Localização: <?php echo $anuncio[0]['cidade']." - ".$anuncio[0]['estado']?></li>
                 <li class="list-group-item">Criado por: <?php echo $anuncio[0]['nomeUsuario']; ?></li>
                 <li class="list-group-item">Data da Criação do Anúncio: <?php $date = date_create($anuncio[0]['dataCriacao']); echo date_format($date,'d/m/Y'); ?></li>
-                <li class="list-group-item"><a href="#"><button type="button" class="btn btn-primary btn-block">Alugar</button></a></li>
+                <li class="list-group-item">
+                    <?php 
+                        if($this->session->userdata('email') == $anuncio[0]['email']){
+                            echo '<a href="#"><button type="button" class="btn btn-primary btn-block">Editar</button></a>';
+                        }else{
+                            echo '<a href="#"><button type="button" class="btn btn-primary btn-block">Alugar</button></a>';
+                        }
+                    ?>
+                </li>
             </ul>
         </div>
     </div>
