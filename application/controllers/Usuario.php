@@ -15,7 +15,7 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
         $this->load->model('Anuncio_model');
 
-        $data['anuncios'] = $this->Anuncio_model->read($id);
+        $data['anuncios'] = $this->Anuncio_model->searchByUser($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id == $this->session->userdata('id')) {
             $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];

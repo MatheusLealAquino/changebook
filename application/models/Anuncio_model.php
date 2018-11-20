@@ -16,6 +16,15 @@
             return $this->db->insert_id();
         }
 
+        public function searchByUser($idUsuario) {
+            $this->db->select('*');
+            $this->db->from('anuncio');
+            $this->db->where('idUsuario', $idUsuario);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
         public function read($id=null){
             if($id != null) $this->db->where('idAnuncio', $id);
             $query = $this->db->select('*')
