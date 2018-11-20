@@ -7,7 +7,8 @@
         public $sinopse;
 
         public function create(){
-            return $this->db->insert($this->tableName, $this);
+            $this->db->insert($this->tableName, $this);
+            return $this->db->insert_id();
         }
 
         public function read($id=null){

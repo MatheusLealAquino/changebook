@@ -1,6 +1,6 @@
-<div class="container-fluid body-wrapper cadastro-anuncio">
+<div class="container-fluid form-cadastro">
     <div class="row">
-        <div class="col-md-10 mx-auto mb-3">
+        <div class="col-md-10 mx-auto mb-3 mt-2">
             <form action="<?= base_url() ?>index.php/Anuncio/create" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                 <div class="form-group">
@@ -13,7 +13,7 @@
                             }
                         ?>
                     </select>
-                    <a href="#"><small>Livro não encontrado? Cadastre aqui</small></a>
+                    <a href="<?= base_url() ?>index.php/Livro/create"><small>Livro não encontrado? Cadastre aqui</small></a>
                 </div>
                 <div class="form-group">
                     <label for="fotoRegister">Foto anúncio</label>

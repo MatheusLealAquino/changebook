@@ -71,15 +71,11 @@ class Anuncio extends CI_Controller {
 			}else{
 				$data['error'] = "Anúncio não foi criado"; 
 			}
-
-			$this->load->view('fixed/header', $data);
-			$this->load->view('cadastro_anuncio');
-			$this->load->view('fixed/footer.php');
-		}else{
-			$this->load->view('fixed/header', $data);
-        	$this->load->view('cadastro_anuncio');
-			$this->load->view('fixed/footer.php');
 		}
+
+		$this->load->view('fixed/header', $data);
+		$this->load->view('cadastro_anuncio');
+		$this->load->view('fixed/footer.php');
 	}
 
 	public function read($id){
