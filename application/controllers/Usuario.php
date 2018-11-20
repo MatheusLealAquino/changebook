@@ -25,7 +25,7 @@ class Usuario extends CI_Controller {
             
             $this->Usuario_model->id = $id;
             $this->Usuario_model->dataCriacao = $data['usuario']['dataCriacao']; 
-            $this->Usuario_model->nome = $this->input->post('name');
+            $this->Usuario_model->nomeUsuario = $this->input->post('name');
             $this->Usuario_model->email = $this->input->post('email');    
             
             if( $pass1 != "" && $pass2 != "" && ($pass1 == $pass2)){
@@ -46,26 +46,20 @@ class Usuario extends CI_Controller {
             $this->session->unset_userdata('email');
 
             $updateSession = array(
-                'nome' => $this->Usuario_model->nome,
+                'nome' => $this->Usuario_model->nomeUsuario,
                 'email' => $this->Usuario_model->email
             );
 
             $this->session->set_userdata($updateSession);
+        }
+        
+        $data['title'] = $this->session->userdata('nome');
 
-            $data['title'] = $this->session->userdata('nome');
+        $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
 
-            $this->load->view('fixed/header', $data);
-            $this->load->view('perfil');
-            $this->load->view('fixed/footer.php');
-		}else{
-            $data['title'] = $this->session->userdata('nome');
-
-            $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
-
-            $this->load->view('fixed/header', $data);
-            $this->load->view('perfil');
-            $this->load->view('fixed/footer.php');
-		}
+        $this->load->view('fixed/header', $data);
+        $this->load->view('perfil');
+        $this->load->view('fixed/footer.php');
     }
 
     private function uploadPhoto(){
