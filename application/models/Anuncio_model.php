@@ -9,6 +9,7 @@
         public $dataCriacao;
         public $preco;
         public $idLocalizacao;
+        public $titulo;
         
         public function create(){
             $this->db->insert($this->tableName, $this);

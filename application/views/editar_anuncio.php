@@ -1,4 +1,4 @@
-<div class="container-fluid body-wrapper cadastro-anuncio">
+<div class="container-fluid body-wrapper form-cadastro">
     <div class="row">
         <div class="col-md-10 mx-auto mb-3">
             <form action="<?= base_url() ?>index.php/Anuncio/create" method="POST" enctype="multipart/form-data">
@@ -6,10 +6,14 @@
                 <div class="form-group">
                     <label for="livroRegister">Livro</label>                      
                     <select class="form-control" name="livro" id="livroRegister" required>
-                        <option disabled selected>Selecione um livro</option>
+                        <option disabled>Selecione um livro</option>
                         <?php 
                             foreach ($livros as $livro) {
-                                echo '<option value="'.$livro['id'].'">'.$livro['nome'].'</option>';
+                                if($livro['id'] == $livroAnuncio['id']){
+                                    echo '<option value="'.$livro['id'].' selected">'.$livro['nome'].'</option>';
+                                }else{
+                                    echo '<option value="'.$livro['id'].'">'.$livro['nome'].'</option>';
+                                }
                             }
                         ?>
                     </select>

@@ -90,11 +90,18 @@ class Anuncio extends CI_Controller {
 	}
 
 	public function edit($id){
+		$this->load->model('Anuncio_model');
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-		}else{
-
 		}
+		
+		$data['anuncio'] = $this->Anuncio_model->read($id)[0];
+		$data['title'] = 'Editar Anúncio - '.$data['anuncio']['nome'];
+
+		$this->load->view('fixed/header', $data);
+		$this->load->view('editar_anuncio');
+		$this->load->view('fixed/footer.php');
 	}
 
 	private function uploadPhoto(){

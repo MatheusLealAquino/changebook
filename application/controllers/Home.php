@@ -48,7 +48,7 @@ class Home extends CI_Controller {
         $this->load->model('Usuario_model');
 
         $this->Usuario_model->dataCriacao = date("Y-m-d");
-		$this->Usuario_model->nome = $this->input->post('name');
+		$this->Usuario_model->nomeUsuario = $this->input->post('name');
 		$this->Usuario_model->email = $this->input->post('email');
 		$this->Usuario_model->senha = md5($this->input->post('password'));
 
