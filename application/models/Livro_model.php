@@ -18,8 +18,13 @@
         }
 
         public function update(){
+            $data = array(
+                'nome' => $this->nome,
+                'sinopse' => $this->sinopse
+            );
+
             $this->db->where('id', $this->id);
-            return $this->db->update($this->tableName, $this);
+            return $this->db->update($this->tableName, $data);
         }
 
         public function delete(){

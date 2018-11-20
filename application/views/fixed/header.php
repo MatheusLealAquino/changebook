@@ -30,6 +30,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="'.base_url().'index.php/Anuncio/Create">Cadastrar Anúncio</span></a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="'.base_url().'index.php/Livro">Visualizar Livros</span></a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
