@@ -134,6 +134,18 @@ class Anuncio extends CI_Controller {
 		$this->load->view('fixed/footer.php');
 	}
 
+	public function delete($id){
+		$anuncio = $this->db->delete('anuncio', array('idAnuncio' => $id));
+		if($anuncio) {
+			$data = "status=success&message=Anúncio excluído";
+		} else {
+			$data = "status=erro&message=Anúncio não excluído";
+		}
+
+		redirect('/Usuario/perfil/'.$this->session->userdata('id').'?'.$data);
+	}
+
+
 	private function uploadPhoto(){
         $this->load->model('Anuncio_model');
 

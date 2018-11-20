@@ -44,7 +44,16 @@
             <div class="list-group">
                 <?php 
                     foreach ($anuncios as $anuncio){
-                        echo "<a href='".base_url().'Anuncio/'.$anuncio['idAnuncio']."' class='list-group-item list-group-item-action'>".$anuncio['titulo']."</a>";
+                        echo "
+                            <div class='list-group-item list-group-item-action'>
+                                <a href='".base_url().'Anuncio/read/'.$anuncio['idAnuncio']."' >".$anuncio['titulo']."</a>
+                                <div class='btn-group float-right btn-group-sm' role='group' aria-label='Actions'>
+                                    <a href='".base_url().'Anuncio/edit/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>editar</a>
+                                    <a href='".base_url().'Anuncio/delete/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>excluir</a>
+                                </div>
+                            </div>
+                        ";
+
                     }
                 ?>
             </div>
