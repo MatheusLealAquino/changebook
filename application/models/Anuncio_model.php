@@ -10,6 +10,7 @@
         public $preco;
         public $idLocalizacao;
         public $titulo;
+        public $status;
         
         public function create(){
             $this->db->insert($this->tableName, $this);
@@ -25,8 +26,9 @@
             return $query->result_array();
         }
 
-        public function read($id=null){
+        public function read($id=null, $status=null){
             if($id != null) $this->db->where('idAnuncio', $id);
+            if($status != null) $this->db->where('status', $status);
             $query = $this->db->select('*')
                   ->from('anuncio')
                   ->join('usuario', 'usuario.id = anuncio.idUsuario')

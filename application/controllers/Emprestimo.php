@@ -14,7 +14,7 @@ class Emprestimo extends CI_Controller {
     public function create(){
         $data['title'] = 'Realizar Emprestimo';
 
-        $anuncioId = $this->input->get('anuncio');
+        $anuncioId = $this->input->get('idAnuncio');
         $usuarioId = $this->session->userdata('id');
 
         $this->load->view('fixed/header', $data);

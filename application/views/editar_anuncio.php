@@ -66,6 +66,14 @@
                         ?>
                     </select>
                 </div>
+                <div class="form-group ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="true" name="status" <?php echo "checked" ?> >
+                        <label class="form-check-label" for="defaultCheck1">
+                            Status
+                        </label>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary btn-block">Atualizar</button>
             </form>
         </div>

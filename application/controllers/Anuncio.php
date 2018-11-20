@@ -16,7 +16,7 @@ class Anuncio extends CI_Controller {
         
 		$this->load->model('Anuncio_model');
 
-		$data['anuncios'] = $this->Anuncio_model->read();
+		$data['anuncios'] = $this->Anuncio_model->read(null, true);
 
 		$this->load->view('fixed/header', $data);
         $this->load->view('anuncios');
@@ -105,6 +105,8 @@ class Anuncio extends CI_Controller {
 				$this->Anuncio_model->titulo = $this->input->post('titulo'); 
 				$this->Anuncio_model->idLocalizacao = $this->input->post('localizacao');
 				$this->Anuncio_model->urlCapa = $this->input->post('urlCapa');
+
+				if($this->input->post('status') != "true") $this->Anuncio_model->status = false;
 
 				if (isset($_FILES['fotoAnuncio']) && !empty($_FILES['fotoAnuncio']['name'])){
 					$data['upload'] = $this->uploadPhoto();

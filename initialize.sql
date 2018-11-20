@@ -32,6 +32,7 @@ CREATE TABLE anuncio (
     dataCriacao TIMESTAMP NOT NULL,
     preco FLOAT NOT NULL,
     idLocalizacao INT NOT NULL,
+    status TINYINT DEFAULT 1 NULL,
     FOREIGN KEY (idLivro) REFERENCES livro(id),
     FOREIGN KEY (idUsuario) REFERENCES usuario(id),
     FOREIGN KEY (idLocalizacao) REFERENCES localizacao(id)
