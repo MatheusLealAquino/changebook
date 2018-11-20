@@ -1,5 +1,7 @@
 CREATE DATABASE changebook;
 
+USE changebook;
+
 CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     dataCriacao TIMESTAMP NOT NULL,
@@ -45,7 +47,7 @@ CREATE TABLE tagAnuncio (
     idAnuncio INT NOT NULL,
     PRIMARY KEY(idTag, idAnuncio),
     FOREIGN KEY (idTag) REFERENCES tag(id),
-    FOREIGN KEY (idAnuncio) REFERENCES anuncio(id)
+    FOREIGN KEY (idAnuncio) REFERENCES anuncio(idAnuncio)
 )engine = InnoDB;
 
 CREATE TABLE emprestimo (
@@ -58,8 +60,8 @@ CREATE TABLE emprestimo (
     PRIMARY KEY(idUsuarioDono, idUsuarioAluguel, idAnuncio),
     FOREIGN KEY (idUsuarioDono) REFERENCES usuario(id),
     FOREIGN KEY (idUsuarioAluguel) REFERENCES usuario(id),
-    FOREIGN KEY (idAnuncio) REFERENCES anuncio(id),
-    FOREIGN KEY (idAnuncioTroca) REFERENCES anuncio(id)
+    FOREIGN KEY (idAnuncio) REFERENCES anuncio(idAnuncio),
+    FOREIGN KEY (idAnuncioTroca) REFERENCES anuncio(idAnuncio)
 )engine = InnoDB;
 
 
@@ -67,7 +69,7 @@ INSERT INTO localizacao (cidade, estado)
 VALUES ('Niterói', 'Rio de Janeiro');
 
 INSERT INTO localizacao (cidade, estado)
-VALUES ('São Gonçalo', 'Rio de Janeiro');
+VALUES ('Sao Gonçalo', 'Rio de Janeiro');
 
 INSERT INTO localizacao (cidade, estado)
 VALUES ('Rio de Janeiro', 'Rio de Janeiro');
@@ -85,19 +87,19 @@ INSERT INTO localizacao (cidade, estado)
 VALUES ('Salvador', 'Bahia');
 
 INSERT INTO tag(nome)
-VALUES ('Ação');
+VALUES ('Acao');
 
 INSERT INTO tag(nome)
 VALUES ('Comédia');
 
 INSERT INTO tag(nome)
-VALUES ('Ficção');
+VALUES ('Ficcao');
 
 INSERT INTO tag(nome)
 VALUES ('Terror');
 
 INSERT INTO tag(nome)
-VALUES ('Administração');
+VALUES ('Administracao');
 
 INSERT INTO tag(nome)
 VALUES ('História');
