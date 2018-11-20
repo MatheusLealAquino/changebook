@@ -91,14 +91,44 @@ class Anuncio extends CI_Controller {
 
 	public function edit($id){
 		$this->load->model('Anuncio_model');
+		$this->load->model('Livro_model');
+		$this->load->model('Localizacao_model');
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$data['anuncio'] = $this->Anuncio_model->read($id)[0];
+			if($this->session->userdata('id') == $data['anuncio']['idUsuario']){
+				$this->Anuncio_model->idAnuncio = $id;
+				$this->Anuncio_model->idLivro = $this->input->post('livro');
+				$this->Anuncio_model->idUsuario = $this->session->userdata('id'); 
+				$this->Anuncio_model->dataCriacao = date("Y-m-d"); 
+				$this->Anuncio_model->preco = $this->input->post('preco'); 
+				$this->Anuncio_model->titulo = $this->input->post('titulo'); 
+				$this->Anuncio_model->idLocalizacao = $this->input->post('localizacao');
+				$this->Anuncio_model->urlCapa = $this->input->post('urlCapa');
 
+				if (isset($_FILES['fotoAnuncio']) && !empty($_FILES['fotoAnuncio']['name'])){
+					$data['upload'] = $this->uploadPhoto();
+				}
+
+				if($this->Anuncio_model->update()){
+					$data['success'] = "Anúncio atualizado com sucesso!";
+				}else{
+					$data['error'] = "Anúncio não foi atualizado!"; 
+				}
+			}else{
+				$data['error'] = "Esse usuário não possui permissão de editar esse anúncio";
+			}
 		}
 		
 		$data['anuncio'] = $this->Anuncio_model->read($id)[0];
+		$data['livros'] = $this->Livro_model->read();
+		$data['localizacoes'] = $this->Localizacao_model->read();
 		$data['title'] = 'Editar Anúncio - '.$data['anuncio']['nome'];
-
+		
+		if($this->session->userdata('id') != $data['anuncio']['idUsuario']){
+			redirect('/Anuncio/read/'.$id);
+		}
+		
 		$this->load->view('fixed/header', $data);
 		$this->load->view('editar_anuncio');
 		$this->load->view('fixed/footer.php');
