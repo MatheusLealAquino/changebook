@@ -11,7 +11,7 @@ class Usuario extends CI_Controller {
 		}		
 	}
     
-    public function perfil($id){
+    public function perfil($id){        
         $this->load->model('Usuario_model');
         $this->load->model('Anuncio_model');
 
@@ -56,7 +56,7 @@ class Usuario extends CI_Controller {
             $this->session->set_userdata($updateSession);
         }
         
-        $data['title'] = $this->session->userdata('nome');
+        $data['title'] = "Perfil - ".$this->session->userdata('nome');
 
         $data['usuario'] = $this->Usuario_model->read($this->session->userdata('id'))[0];
 

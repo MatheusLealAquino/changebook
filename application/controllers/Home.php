@@ -64,7 +64,7 @@ class Home extends CI_Controller {
 		$result = $this->Usuario_model->loginUser($this->Usuario_model->email, $this->Usuario_model->senha);
 
         $userData = array(
-			'nome' => $result[0]['nome'],
+			'nome' => $result[0]['nomeUsuario'],
 			'id' => $result[0]['id'],
             'email' => $this->Usuario_model->email,
             'logged_in' => TRUE
@@ -85,10 +85,9 @@ class Home extends CI_Controller {
 
 		//Make query to get the user
 		$result = $this->Usuario_model->loginUser($email, $senha);
-
 		if( count($result) == 1){
 			$userData = array(
-				'nome' => $result[0]['nome'],
+				'nome' => $result[0]['nomeUsuario'],
 				'id' => $result[0]['id'],
 				'email' => $email,
 				'logged_in' => TRUE

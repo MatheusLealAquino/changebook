@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group ">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="true" name="status" <?php echo "checked" ?> >
+                        <input class="form-check-input" type="checkbox" value="true" name="status" <?php if($anuncio['status']==true) echo "checked" ?> >
                         <label class="form-check-label" for="defaultCheck1">
                             Status
                         </label>

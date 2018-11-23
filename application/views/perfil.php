@@ -48,8 +48,8 @@
                             <div class='list-group-item list-group-item-action'>
                                 <a href='".base_url().'Anuncio/read/'.$anuncio['idAnuncio']."' >".$anuncio['titulo']."</a>
                                 <div class='btn-group float-right btn-group-sm' role='group' aria-label='Actions'>
-                                    <a href='".base_url().'Anuncio/edit/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>editar</a>
-                                    <a href='".base_url().'Anuncio/delete/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>excluir</a>
+                                    <a href='".base_url().'index.php/Anuncio/edit/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>editar</a>
+                                    <a href='".base_url().'index.php/Anuncio/delete/'.$anuncio['idAnuncio']."' class='btn btn-secondary'>excluir</a>
                                 </div>
                             </div>
                         ";
