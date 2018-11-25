@@ -17,6 +17,18 @@ class Emprestimo extends CI_Controller {
         $anuncioId = $this->input->get('idAnuncio');
         $usuarioId = $this->session->userdata('id');
 
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            
+        }
+
+        $this->load->view('fixed/header', $data);
+        $this->load->view('realizar_emprestimo');
+        $this->load->view('fixed/footer');
+    }
+
+    public function result(){
+        $data['title'] = 'Resultado';
+
         $this->load->view('fixed/header', $data);
         $this->load->view('realizar_emprestimo');
         $this->load->view('fixed/footer');
