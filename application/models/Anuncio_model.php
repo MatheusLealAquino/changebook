@@ -38,6 +38,17 @@
             return $query->result_array();
         }
 
+        public function readByIdUser($id){
+            $this->db->where('idUsuario', $id);
+            $query = $this->db->select('*')
+                  ->from('anuncio')
+                  ->join('usuario', 'usuario.id = anuncio.idUsuario')
+                  ->join('livro', 'livro.id = anuncio.idLivro')
+                  ->join('localizacao', 'localizacao.id = anuncio.idLocalizacao')
+                  ->get();
+            return $query->result_array();
+        }
+
         public function update(){
             $this->db->where('idAnuncio', $this->idAnuncio);
             return $this->db->update($this->tableName, $this);

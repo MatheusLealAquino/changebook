@@ -57,7 +57,7 @@
                     }
                 ?>
             </div>
-            <button type="button" class="btn btn-info mt-2 float-right">Ver todos anúncios</button>
+            <a href="<?= base_url() ?>index.php/Anuncio?idUser=<?php echo $this->session->userdata('id') ?>"><button type="button" class="btn btn-info mt-2 float-right">Ver todos anúncios</button></a>
         </div>
     </div>
 </div>

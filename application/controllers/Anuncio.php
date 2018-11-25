@@ -15,8 +15,13 @@ class Anuncio extends CI_Controller {
 		$data['title'] = 'Anuncios';
         
 		$this->load->model('Anuncio_model');
+		$idUsuario = $this->input->get('idUser');
 
-		$data['anuncios'] = $this->Anuncio_model->read(null, true);
+		if(!empty($idUsuario)){
+			$data['anuncios'] = $this->Anuncio_model->readByIdUser($idUsuario);
+		}else{
+			$data['anuncios'] = $this->Anuncio_model->read(null, true);
+		}
 
 		$this->load->view('fixed/header', $data);
         $this->load->view('anuncios');
