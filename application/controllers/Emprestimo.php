@@ -43,6 +43,10 @@ class Emprestimo extends CI_Controller {
 
     public function result(){
         $data['title'] = 'Resultado';
+        
+        $this->load->model('Usuario_model');
+
+        $data['usuario'] = $this->Usuario_model->read($this->input->get('idUsuario'));
 
         $this->load->view('fixed/header', $data);
         $this->load->view('finalizacao_emprestimo');

@@ -60,6 +60,7 @@
         }
 
         public function search($bookName){
+            $this->db->where('status', true);
             $query = $this->db->select('*')
                 ->from('anuncio')
                 ->join('livro', 'anuncio.idLivro = livro.id')
