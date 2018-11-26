@@ -58,7 +58,7 @@ CREATE TABLE emprestimo (
     data TIMESTAMP NOT NULL,
     valor FLOAT NOT NULL,
     idAnuncioTroca INT,
-    PRIMARY KEY(idUsuarioDono, idUsuarioAluguel, idAnuncio),
+    PRIMARY KEY(idUsuarioDono, idUsuarioAluguel, idAnuncio, data),
     FOREIGN KEY (idUsuarioDono) REFERENCES usuario(id),
     FOREIGN KEY (idUsuarioAluguel) REFERENCES usuario(id),
     FOREIGN KEY (idAnuncio) REFERENCES anuncio(idAnuncio),
